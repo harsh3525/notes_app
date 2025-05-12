@@ -6,14 +6,14 @@ import com.gotprint.notes.dto.NoteDTO;
 
 public interface NoteService {
 
-	NoteDTO createNote(NoteDTO noteDTO);
+	NoteDTO createNote(NoteDTO noteDTO, String userName);
 
-	List<NoteDTO> getAllNotes();
+	List<NoteDTO> getAllNotes(String userName);
 
-	NoteDTO getSingleNote(Long noteId);
+	NoteDTO getSingleNote(Long noteId, String userName);
 
-	NoteDTO updateNote(Long noteId, NoteDTO noteDTO);
+	NoteDTO updateNote(Long noteId, NoteDTO noteDTO, String userName);
 
-	void deleteNote(Long noteId);
+	void deleteNote(Long noteId, String userName);
 
 }

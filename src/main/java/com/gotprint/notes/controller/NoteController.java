@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gotprint.notes.dto.NoteDTO;
 import com.gotprint.notes.service.NoteService;
+import com.gotprint.notes.utils.CommonUtils;
 
 @RestController
 @RequestMapping("/api/notes")
@@ -24,29 +25,32 @@ public class NoteController {
 	@Autowired
 	private NoteService noteService;
 	
+	@Autowired
+	private CommonUtils commonUtils;
+	
 	@PostMapping("/createNote")
 	public ResponseEntity<NoteDTO> createNote(@RequestBody NoteDTO noteDTO) {
-		return new ResponseEntity<NoteDTO>(noteService.createNote(noteDTO), HttpStatus.CREATED);
+		return new ResponseEntity<NoteDTO>(noteService.createNote(noteDTO, commonUtils.getLoginInfo().getUsername()), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/getAllNotes")
 	public ResponseEntity<List<NoteDTO>> getAllNotes() {
-		return ResponseEntity.ok(noteService.getAllNotes());
+		return ResponseEntity.ok(noteService.getAllNotes(commonUtils.getLoginInfo().getUsername()));
 	}
 	
 	@GetMapping("/{noteId}")
 	public ResponseEntity<NoteDTO> getSingleNote(@PathVariable("noteId")Long noteId) {
-		return ResponseEntity.ok(noteService.getSingleNote(noteId));
+		return ResponseEntity.ok(noteService.getSingleNote(noteId, commonUtils.getLoginInfo().getUsername()));
 	}
 	
 	@PutMapping("/updateNote/{noteId}")
 	public ResponseEntity<NoteDTO> updateNote(@PathVariable("noteId")Long noteId, @RequestBody NoteDTO noteDTO) {
-		return ResponseEntity.ok(noteService.updateNote(noteId, noteDTO));
+		return ResponseEntity.ok(noteService.updateNote(noteId, noteDTO, commonUtils.getLoginInfo().getUsername()));
 	}
 	
 	@DeleteMapping("/{noteId}")
 	public ResponseEntity<String> deleteNote(@PathVariable("noteId")Long noteId) {
-		noteService.deleteNote(noteId);
+		noteService.deleteNote(noteId, commonUtils.getLoginInfo().getUsername());
 		return ResponseEntity.ok("Note is deleted successfully");
 	}
 
