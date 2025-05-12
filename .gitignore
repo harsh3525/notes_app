@@ -8,10 +8,46 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
 
 # Eclipse m2e generated files
 # Eclipse Core
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+### Java
+*.class
+*.log
+# Package Files #
+*.war
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+### IntelliJ IDE Files
+.idea/
+*.iws
+*iml
+*/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+
+### Eclipse IDE Files
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.target
+.springBeans
+.worksheet
+.classpath
+.project
