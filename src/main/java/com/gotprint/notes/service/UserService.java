@@ -1,8 +1,9 @@
 package com.gotprint.notes.service;
 
-import org.springframework.stereotype.Service;
+import com.gotprint.notes.dto.UserDTO;
 
-@Service
 public interface UserService {
+
+	void createUser(UserDTO userDTO);
 
 }
