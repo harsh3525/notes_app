@@ -18,6 +18,8 @@ import com.gotprint.notes.dto.NoteDTO;
 import com.gotprint.notes.service.NoteService;
 import com.gotprint.notes.utils.CommonUtils;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
@@ -29,7 +31,7 @@ public class NoteController {
 	private CommonUtils commonUtils;
 	
 	@PostMapping("/createNote")
-	public ResponseEntity<NoteDTO> createNote(@RequestBody NoteDTO noteDTO) {
+	public ResponseEntity<NoteDTO> createNote(@Valid @RequestBody NoteDTO noteDTO) {
 		return new ResponseEntity<NoteDTO>(noteService.createNote(noteDTO, commonUtils.getLoginInfo().getUsername()), HttpStatus.CREATED);
 	}
 	
@@ -44,7 +46,7 @@ public class NoteController {
 	}
 	
 	@PutMapping("/updateNote/{noteId}")
-	public ResponseEntity<NoteDTO> updateNote(@PathVariable("noteId")Long noteId, @RequestBody NoteDTO noteDTO) {
+	public ResponseEntity<NoteDTO> updateNote(@PathVariable("noteId")Long noteId, @Valid @RequestBody NoteDTO noteDTO) {
 		return ResponseEntity.ok(noteService.updateNote(noteId, noteDTO, commonUtils.getLoginInfo().getUsername()));
 	}
 	
